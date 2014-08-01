@@ -4,6 +4,6 @@
     "accounts-ui-bootstrap-dropdown": {},
     "spin": {},
     "x-editable-bootstrap3": {},
-    "meteor-editable": {}
+    "x-editable-bootstrap": {}
   }
 }

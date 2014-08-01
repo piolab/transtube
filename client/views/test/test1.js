@@ -8,8 +8,8 @@ if (Meteor.isClient) {
         dataType: 'jsonp',
 
         url: TRANSLATE_URL_PREFIX+'&source='+encodeURIComponent('en')+
-            '&target='+encodeURIComponent('vi')+
-            '&q='+encodeURIComponent(keyword),
+        '&target='+encodeURIComponent('vi')+
+        '&q='+encodeURIComponent(keyword),
 
         success: function(trans) {
           // alert(trans.data.translations[0].translatedText);
@@ -25,6 +25,15 @@ if (Meteor.isClient) {
       // need to set boolean here - tried the below code
     }
   });
+  Template.translate.rendered = function(){
+    $('#textArea.editable').editable({
+      placement: "auto bottom",
+      success: function(response, newValue) {
+        alert(newValue);
+        console.log(response);
+    // <do something with newValue - usually a collection.update call>
+  }});
+  }
 }
 
 if (Meteor.isServer) {

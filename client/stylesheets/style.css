@@ -2,3 +2,8 @@
 	height: 17em;
 	/*padding: 30px;*/
 }
+.target_word:hover {
+	border-bottom-style:dashed;
+	border-bottom-color: #08C;
+	border-bottom-width: 1px;
+}
