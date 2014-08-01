@@ -27,7 +27,7 @@ if (Meteor.isClient) {
   });
   Template.translate.rendered = function(){
     $('#textArea.editable').editable({
-      placement: "auto bottom",
+      placement: "bottom",
       success: function(response, newValue) {
         alert(newValue);
         console.log(response);
