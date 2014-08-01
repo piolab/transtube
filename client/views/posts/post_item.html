@@ -1,11 +1,17 @@
 <template name="postItem">
-	<div class="post">
-		<div class="post-content">
-			<h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
-			<!-- <p>
-				submitted by {{author}}
-			</p> -->
+	<div class="">
+		<div class="post-content well span6">
+			<div class="inner">
+				<h4><a href="{{pathFor 'postPage'}}">{{title}}</a></h4>
+				<div class="video-meta row-fluid">
+					<div class="thumbnail span6">
+						<img src="{{videoThumbnail}}">
+					</div>
+					<div class="span6">
+						<a href="{{pathFor 'postPage'}}" class="btn btn-success">Help Translate</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<a href="{{pathFor 'postPage'}}" class="discuss btn">Discuss</a>
 	</div>
 </template>
