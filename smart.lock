@@ -6,11 +6,8 @@
       "spin": {},
       "x-editable-bootstrap": {},
       "accounts-ui-bootstrap-3": {},
-<<<<<<< HEAD
-      "iron-router-progress": {}
-=======
+      "iron-router-progress": {},
       "popcorn": {}
->>>>>>> 0bd1922beb13fbba4955193c2765d380d51338af
     },
     "packages": {
       "iron-router": {
@@ -33,17 +30,15 @@
         "tag": "v0.3.3",
         "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
       },
-<<<<<<< HEAD
       "iron-router-progress": {
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.4.1",
         "commit": "496fcda9a6ec352b4733725f60c6f280250c3541"
-=======
+      },
       "popcorn": {
         "git": "https://github.com/santihbc/meteor-popcorn-js.git",
         "tag": "v0.1.0",
         "commit": "20c5e438f0d1634f7c2ca3b0f78ac0bf63cb2e7c"
->>>>>>> 0bd1922beb13fbba4955193c2765d380d51338af
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

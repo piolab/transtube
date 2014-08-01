@@ -12,11 +12,6 @@
 	border-bottom-width: 1px;
 }
 
-<<<<<<< HEAD
-#iron-router-progress.spinner:before {
-    border-color : red;
-=======
-
 /* tran_item */
 #demo1 { position:relative; height:350px; }
 #demo-nav { position:absolute; top:5px; margin:5px; }
@@ -38,5 +33,4 @@
 
 .tran {
     margin-top:10px;
->>>>>>> 0bd1922beb13fbba4955193c2765d380d51338af
 }
