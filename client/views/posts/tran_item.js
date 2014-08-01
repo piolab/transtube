@@ -58,22 +58,33 @@ if (Meteor.isClient) {
     };
 
     Template.tranItem.rendered = function () {
-        //var require = Meteor.require;
         var video = Popcorn.youtube('#youtube-video', 'https://www.youtube.com/watch?v=1qL74-K3wuc');
         var eventDiv = document.getElementById("footnotediv");
         var allTracks = [];
         var chScrollPositions = [];
         var chapters = [];
 
+        function initEditable() {
+            $('.editable').editable({
+                success: function(response, newValue) {
+                    // alert(newValue);
+                    alert(this);
+                    // <do something with newValue - usually a collection.update call>
+                }
+            });
+        }
+
         function addTranscriptScrollBox(allTracks) {
             var tranList = $('#demo-stage').find('ul');
             for (var i = 0; i < allTracks.length; i++) {
                 var text = allTracks[i].text;
                 var leftHtml = '<div class="left-tran" id= ' + '"sentence' + i + '"' + '>' + text + '</div>';
-                var rightHtml = '<div class="right-tran" id= ' + '"transentence' + i + '"' + '>' + text + '</div>';
+                var rightHtml = '<div class="editable right-tran" data-placement="bottom" data-type="textarea" id= ' + '"transentence' + i + '"' + '>' + text + '</div>';
                 var html = '<div class="tran">' + leftHtml + rightHtml + '</div>';
                 tranList.append(html);
             }
+
+            initEditable();
         }
 
         function initChScrollPositions() {
