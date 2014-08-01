@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-
+    // console.log();
     $.fn.scrollTo = function( target, options, callback ){
         if(typeof options == 'function' && arguments.length == 2){ callback = options; options = target; }
         var settings = $.extend({

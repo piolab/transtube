@@ -17,7 +17,7 @@ if (Meteor.isClient) {
           $(event.target).popover({
             html: true,
             // title: trans.data.translations[0].translatedText,
-            content: trans.data.translations[0].translatedText
+            content: '<h4>'+trans.data.translations[0].translatedText+'</h4>'
           });
         }
 
