@@ -5,10 +5,8 @@
 
 standard-app-packages
 insecure
-bootstrap
 iron-router
-accounts-ui-bootstrap-dropdown
 accounts-password
 spin
-x-editable-bootstrap3
 x-editable-bootstrap
+accounts-ui-bootstrap-3

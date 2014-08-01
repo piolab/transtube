@@ -3,10 +3,9 @@
   "dependencies": {
     "basePackages": {
       "iron-router": {},
-      "accounts-ui-bootstrap-dropdown": {},
       "spin": {},
-      "x-editable-bootstrap3": {},
-      "x-editable-bootstrap": {}
+      "x-editable-bootstrap": {},
+      "accounts-ui-bootstrap-3": {}
     },
     "packages": {
       "iron-router": {
@@ -14,25 +13,20 @@
         "tag": "v0.8.2",
         "commit": "05415a8891ea87a00fb1e2388585f2ca5a38e0da"
       },
-      "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.8.3",
-        "commit": "a7af8a52e4e74db020a69b158a8f992797b8b0b0"
-      },
       "spin": {
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v2.0.4",
         "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
       },
-      "x-editable-bootstrap3": {
-        "git": "https://github.com/JustinSGray/meteor-x-editable-bootstrap.git",
-        "tag": "v1.5.2",
-        "commit": "1e5e6d7bddf0b17cc6ea2fc1f50c3f9fd2cfc3f3"
-      },
       "x-editable-bootstrap": {
         "git": "https://github.com/nate-strauser/meteor-x-editable-bootstrap.git",
         "tag": "v1.5.1",
         "commit": "ddb9e4523b570f88d96c4fbafa5f6883e544baf8"
+      },
+      "accounts-ui-bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
+        "tag": "v0.3.3",
+        "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

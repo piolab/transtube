@@ -8,10 +8,7 @@ Template.postItem.helpers({
 
 Template.postItem.rendered = function(){
     $('.editable').editable({
-      placement: "auto bottom",
-      success: function(response, newValue) {
-        alert(newValue);
-        console.log(response);
-    // <do something with newValue - usually a collection.update call>
-  	}});
+		  success: function(response, newValue) {
+		    // <do something with newValue - usually a collection.update call>
+		}});
   }

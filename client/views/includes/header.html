@@ -1,5 +1,5 @@
 <template name="header">
-  <header class="navbar">
+ <!--  <header class="navbar">
     <div class="navbar-inner">
       <a class="brand" href="{{pathFor 'postsList'}}">TransTube</a>
       <div class="nav-collapse collapse">
@@ -13,5 +13,21 @@
         </ul>
       </div>
     </div>
-  </header>
+  </header> -->
+  <header class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{pathFor 'postsList'}}">Transtube</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          {{#if currentUser}}
+            <li class="active"><a href="{{pathFor 'postSubmit'}}">Submit new video</a></li>
+          {{/if}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {{> loginButtons }} <!-- here -->
+        </ul>
+    </div>
+</header>
+<!-- </ul> -->
 </template>

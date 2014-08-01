@@ -1,9 +1,8 @@
 {
   "packages": {
     "iron-router": {},
-    "accounts-ui-bootstrap-dropdown": {},
     "spin": {},
-    "x-editable-bootstrap3": {},
-    "x-editable-bootstrap": {}
+    "x-editable-bootstrap": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }
