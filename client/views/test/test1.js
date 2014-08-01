@@ -1,16 +1,4 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to tubelearning.";
-  };
-
-  Template.hello.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
-
   Template.translate.events({
     'mouseover .target_word': function (event) {
       var keyword = event.target.innerText;
@@ -37,18 +25,6 @@ if (Meteor.isClient) {
       // need to set boolean here - tried the below code
     }
   });
-
-  // Template.carpool_event.events({
-  //   /**
-  //    * Take Event Handler
-  //    */
-  //   "click .takeEvent": function () {
-  //      Session.set("selected_carpool_event", this._id);
-       
-  //          console.log("Take event:"+this._id);
-       
-  //   }
-  // });
 }
 
 if (Meteor.isServer) {

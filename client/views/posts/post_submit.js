@@ -27,7 +27,8 @@ Template.postSubmit.events({
             		videoId: videoid[1],
             		title: youtubeInfo.title,
             		videoThumbnail: youtubeInfo.thumbnail,
-            		desctiption: desctiption
+            		desctiption: desctiption,
+            		submitted:new Date().getTime()
             	},function(err,id){
             		Router.go('postPage', {_id: id});
             	});
