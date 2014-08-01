@@ -1,19 +1,20 @@
 <template name="postItem">
-	<div class="">
-		<div class="post-content well col-md-6">
-			<div class="inner">
-				<!-- <h4><a href="{{pathFor 'postPage'}}">{{title}}</a></h4> -->
-				<span class="editable" data-type="textarea" data-rows="2">{{title}}</span>       
+	<div class="row-fluid">
+		<div class="post-content col-md-5">
+			<div>
+				<h4><a href="{{pathFor 'postPage'}}">{{title}}</a></h4>
+				<!-- <span class="editable" data-type="textarea" data-rows="2">{{title}}</span>        -->
 				<!-- {{> m_editable options value="hello"}} -->
 				<div class="video-meta row-fluid">
 					<div class="thumbnail col-md-6">
 						<img src="{{videoThumbnail}}">
 					</div>
-					<div class="span6">
+					<div class="col-md-6">
 						<a href="{{pathFor 'postPage'}}" class="btn btn-success">Help Translate</a>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </template>

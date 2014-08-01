@@ -1,9 +1,17 @@
 .post-content{
-	height: 17em;
+	height: 15em;
+	/*border:1px solid;*/
+	margin: 40px;
+	border-radius: 4px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 	/*padding: 30px;*/
 }
 .target_word:hover {
 	border-bottom-style:dashed;
 	border-bottom-color: #08C;
 	border-bottom-width: 1px;
+}
+
+#iron-router-progress.spinner:before {
+    border-color : red;
 }

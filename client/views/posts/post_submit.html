@@ -1,17 +1,12 @@
 <template name="postSubmit">
-	<form class="main">
-		<div class="control-group">
-			<label class="control-label" for="url">URL</label>
-			<div class="controls">
-				<input name="url" type="text" value="" placeholder="Your URL"/>
-			</div>
-			<div class="controls">
-				<input name="description" type="text" value="" placeholder="Short description"/>
-			</div>
+	<form role="form">
+		<div class="form-group">
+			<!-- <label class="control-label" for="url">URL</label> -->
+			<input class="form-control" name="url" type="text" value="" placeholder="Submit your youtube url"/>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<input type="submit" value="View It Now" class="btn btn-primary"/>
+				<a type="submit" value="View It" class="btn btn-primary btn-lg">View It</a>
 			</div>
 		</div>
 	</form>
