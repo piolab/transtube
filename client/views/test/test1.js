@@ -31,8 +31,17 @@ if (Meteor.isClient) {
       success: function(response, newValue) {
         alert(newValue);
         console.log(response);
-    // <do something with newValue - usually a collection.update call>
-  }});
+      }});
+    $('p').each(function(){
+      var text = $(this).html().split(/\W+/);;
+      len = text.length,
+      result = []; 
+
+      for( var i = 0; i < len; i++ ) {
+        result[i] = ' <span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+      }
+      $(this).html(result.join(' '));
+    });    
   }
 }
 
