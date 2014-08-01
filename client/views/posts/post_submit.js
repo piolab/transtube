@@ -9,7 +9,9 @@ Template.postSubmit.events({
 	'submit form': function(e) {
 		e.preventDefault();
 		// alert('hehe');
-		var url = document.getElementById('youtubeurl').value;
+		var url = $(e.target).find('[name=url]').val();
+      	var desctiption = $(e.target).find('[name=desctiption]').val();
+		// var url = document.getElementById('youtubeurl').value;
 		// alert(url);
 		var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 		var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
@@ -24,7 +26,8 @@ Template.postSubmit.events({
             	Posts.insert({
             		videoId: videoid[1],
             		title: youtubeInfo.title,
-            		videoThumbnail: youtubeInfo.thumbnail
+            		videoThumbnail: youtubeInfo.thumbnail,
+            		desctiption: desctiption
             	},function(err,id){
             		Router.go('postPage', {_id: id});
             	});

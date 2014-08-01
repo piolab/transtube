@@ -2,7 +2,9 @@
 	<div class="">
 		<div class="post-content well span6">
 			<div class="inner">
-				<h4><a href="{{pathFor 'postPage'}}">{{title}}</a></h4>
+				<!-- <h4><a href="{{pathFor 'postPage'}}">{{title}}</a></h4> -->
+				<p id="textArea" class="editable" data-type="textarea" data-placeholder="Enter text" data-emptytext="Click to enter text" data-rows="4">{{title}}</p>
+				{{> m_editable options value="hello"}}
 				<div class="video-meta row-fluid">
 					<div class="thumbnail span6">
 						<img src="{{videoThumbnail}}">

@@ -10,3 +10,6 @@ iron-router
 accounts-ui-bootstrap-dropdown
 accounts-password
 spin
+x-editable-bootstrap3
+meteor-editable
+bootstrap-3

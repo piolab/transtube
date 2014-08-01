@@ -4,7 +4,9 @@
     "basePackages": {
       "iron-router": {},
       "accounts-ui-bootstrap-dropdown": {},
-      "spin": {}
+      "spin": {},
+      "x-editable-bootstrap3": {},
+      "meteor-editable": {}
     },
     "packages": {
       "iron-router": {
@@ -21,6 +23,16 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v2.0.4",
         "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
+      },
+      "x-editable-bootstrap3": {
+        "git": "https://github.com/JustinSGray/meteor-x-editable-bootstrap.git",
+        "tag": "v1.5.2",
+        "commit": "1e5e6d7bddf0b17cc6ea2fc1f50c3f9fd2cfc3f3"
+      },
+      "meteor-editable": {
+        "git": "https://github.com/davidworkman9/meteor-editable.git",
+        "tag": "v0.0.14",
+        "commit": "582f0aa07cb5c64aa3d2fd7936ad95ed6d8c6d9a"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
