@@ -4,6 +4,10 @@
     "spin": {},
     "x-editable-bootstrap": {},
     "accounts-ui-bootstrap-3": {},
+<<<<<<< HEAD
     "iron-router-progress": {}
+=======
+    "popcorn": {}
+>>>>>>> 0bd1922beb13fbba4955193c2765d380d51338af
   }
 }

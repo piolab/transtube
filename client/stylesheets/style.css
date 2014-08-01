@@ -12,6 +12,31 @@
 	border-bottom-width: 1px;
 }
 
+<<<<<<< HEAD
 #iron-router-progress.spinner:before {
     border-color : red;
+=======
+
+/* tran_item */
+#demo1 { position:relative; height:350px; }
+#demo-nav { position:absolute; top:5px; margin:5px; }
+#demo-stage { position:relative; display:block; top:40px; background:#fff; height:300px; width:800px; overflow:auto; }
+#demo-stage li, #demo-stage li h3 { color:#777; }
+#demo-stage li.active, #demo-stage li.active h3 { color:#aa0000; }
+
+.left-tran {
+    display: inline-block;
+    background-color: red;
+    width:40%;
+}
+
+.right-tran {
+    display: inline-block;
+    background-color: green;
+    width:40%;
+}
+
+.tran {
+    margin-top:10px;
+>>>>>>> 0bd1922beb13fbba4955193c2765d380d51338af
 }
