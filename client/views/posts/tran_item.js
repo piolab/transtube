@@ -63,12 +63,14 @@ if (Meteor.isClient) {
         var allTracks = [];
         var chScrollPositions = [];
         var chapters = [];
-
+        var data = this.data;
+        console.log(this.data);
         function initEditable() {
             $('.editable').editable({
                 success: function(response, newValue) {
                     // alert(newValue);
-                    alert(this);
+                    // alert(data.title);
+                    // Sentences.update({postId:this.data._id,order:order},{$push:{transText:newValue}})
                     // <do something with newValue - usually a collection.update call>
                 }
             });
@@ -76,7 +78,7 @@ if (Meteor.isClient) {
 
         function initTranlatable() {
             $('.left-tran').each(function(){
-              var text = $(this).html().split(/\W+/);;
+              var text = $(this).html().split(/\W+/);
               len = text.length,
               result = []; 
 
@@ -90,7 +92,7 @@ if (Meteor.isClient) {
             var tranList = $('#demo-stage').find('ul');
             for (var i = 0; i < allTracks.length; i++) {
                 var text = allTracks[i].text;
-                var leftHtml = '<div class="left-tran" id= ' + '"sentence' + i + '"' + '>' + text + '</div>';
+                var leftHtml = '<span class="left-tran" id= ' + '"sentence' + i + '"' + '>' + text + '</span>';
                 var rightHtml = '<span class="editable right-tran" data-placement="bottom" data-type="textarea" id= ' + '"transentence' + i + '"' + '>' + text + '</span>';
                 var html = '<div class="tran">' + leftHtml + rightHtml + '</div>';
                 tranList.append(html);
