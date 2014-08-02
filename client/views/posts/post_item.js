@@ -9,6 +9,8 @@ Template.postItem.helpers({
 Template.postItem.rendered = function(){
     $('.editable').editable({
 		  success: function(response, newValue) {
+		  	// alert(newValue);
+		  	alert(this);
 		    // <do something with newValue - usually a collection.update call>
 		}});
   }
