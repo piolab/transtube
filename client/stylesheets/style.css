@@ -17,19 +17,40 @@
 /* tran_item */
 #demo1 { position:relative; height:350px; }
 #demo-nav { position:absolute; top:5px; margin:5px; }
-#demo-stage { position:relative; display:block; top:40px; background:#fff; height:300px; width:800px; overflow:auto; }
+#demo-stage { position:relative; display:block; top:40px; background:#fff; height:300px; overflow:auto; }
 #demo-stage li, #demo-stage li h3 { color:#777; }
-#demo-stage li.active, #demo-stage li.active h3 { color:#aa0000; }
+/*#demo-stage li.active, #demo-stage li.active h3 { color:#aa0000; }*/
+.main-translate {
+	text-align: center;
+}
 
+.tran {
+	color: #1d9dd9;
+	pointer: cursor: pointer;
+}
+.tran.active {
+	color: #333;
+	font-weight: bold;
+}
+.translate-popover {
+	color: black;
+}
+#youtube-video {
+	/*text-align: center !important;*/
+	/*margin-left: 50px;*/
+	/*padding-left: 50px;*/
+	padding-right: 50px;
+	float:left;
+}
 .left-tran {
     display: inline-block;
-    background-color: red;
+    /*background-color: red;*/
     width:40%;
 }
 
 .right-tran {
     display: inline-block;
-    background-color: green;
+    /*background-color: green;*/
     width:40%;
 }
 

@@ -74,17 +74,30 @@ if (Meteor.isClient) {
             });
         }
 
+        function initTranlatable() {
+            $('.left-tran').each(function(){
+              var text = $(this).html().split(/\W+/);;
+              len = text.length,
+              result = []; 
+
+              for( var i = 0; i < len; i++ ) {
+                result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+            }
+            $(this).html(result.join(' '));
+        });
+        }
         function addTranscriptScrollBox(allTracks) {
             var tranList = $('#demo-stage').find('ul');
             for (var i = 0; i < allTracks.length; i++) {
                 var text = allTracks[i].text;
                 var leftHtml = '<div class="left-tran" id= ' + '"sentence' + i + '"' + '>' + text + '</div>';
-                var rightHtml = '<div class="editable right-tran" data-placement="bottom" data-type="textarea" id= ' + '"transentence' + i + '"' + '>' + text + '</div>';
+                var rightHtml = '<span class="editable right-tran" data-placement="bottom" data-type="textarea" id= ' + '"transentence' + i + '"' + '>' + text + '</span>';
                 var html = '<div class="tran">' + leftHtml + rightHtml + '</div>';
                 tranList.append(html);
             }
 
             initEditable();
+            initTranlatable();
         }
 
         function initChScrollPositions() {
@@ -151,15 +164,15 @@ if (Meteor.isClient) {
             initChScrollPositions();
             console.log("end");
         })
-            .done(function() {
-                console.log( "second success" );
-            })
-            .fail(function() {
-                console.log( "error" );
-            })
-            .always(function() {
-                console.log( "finished" );
-            });
+        .done(function() {
+            console.log( "second success" );
+        })
+        .fail(function() {
+            console.log( "error" );
+        })
+        .always(function() {
+            console.log( "finished" );
+        });
 
     }
 

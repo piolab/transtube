@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Template.translate.events({
+  Template.tranItem.events({
     'mouseover .target_word': function (event) {
       var keyword = event.target.innerText;
       var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
@@ -17,7 +17,7 @@ if (Meteor.isClient) {
           $(event.target).popover({
             html: true,
             // title: trans.data.translations[0].translatedText,
-            content: '<h4>'+trans.data.translations[0].translatedText+'</h4>'
+            content: '<h4 class="translate-popover">'+trans.data.translations[0].translatedText+'</h4>'
           });
         }
 
