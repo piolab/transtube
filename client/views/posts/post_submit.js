@@ -6,28 +6,33 @@ var thumbnailLink = function(id){
 	return 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'
 };
 // Phien 
-var youtubeTranscript = function(videoId, postId){
-	//return this
-	sentencesObject = {
-		start:'',
-		end: '',
-		postId: postId,
-		order: '',
-		originalText:'',
-		transText: []
-	};
-	return sentencesObject;
-}
-Template.postSubmit.events({
-	'submit form': function(e) {
-		e.preventDefault();
-		var url = $(e.target).find('[name=url]').val();
+var youtubeTranscript = function(xml, videoId, postId){
+	// jsObject = xml to json
+	// for jsObject
+		//return this
+		sentencesObject = {
+			start:'',
+			end: '',
+			postId: postId,
+			order: '',
+			originalText:'',
+			transText: []
+		};
+		Sentences.insert(sentencesObject,function(err,id){
+			alert(err);
+		});
+		//return sentencesObject;
+	}
+	Template.postSubmit.events({
+		'submit form': function(e) {
+			e.preventDefault();
+			var url = $(e.target).find('[name=url]').val();
       	// var desctiption = $(e.target).find('[name=desctiption]').val();
-		var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-		var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
-		var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
-            if (responseTxt){
-            	var responseMedia = responseTxt['entry']['media$group'];
+      	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+      	var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
+      	var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
+      		if (responseTxt){
+      			var responseMedia = responseTxt['entry']['media$group'];
             	// console.log(responseTxt['entry']['media$group']);
             	youtubeInfo = {
             		thumbnail: thumbnailLink(videoid[1]),
@@ -42,26 +47,24 @@ Template.postSubmit.events({
             	},function(err,id){
             		
             		// Phien
-            		sentencesObject = youtubeTranscript(videoid[1], id);
-            		Sentences.insert(sentencesObject,function(err,id){
-            			alert(err);
-            		});
-            		Router.go('postPage', {_id: id});
+            		youtubeTranscript(xml, videoid[1], id);
+            		
+            		// Router.go('postPage', {_id: id});
             	});
             	
             	// console.log(youtubeInfo);
             }
         });
-	},
-	'click #youtubeinfo':function(e) {
+      },
+      'click #youtubeinfo':function(e) {
 		// alert('hehe');
 		var url = document.getElementById('youtubeurl').value;
 		// alert(url);
 		var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 		var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
 		var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
-            if (responseTxt){
-            	var responseMedia = responseTxt['entry']['media$group'];
+			if (responseTxt){
+				var responseMedia = responseTxt['entry']['media$group'];
             	// console.log(responseTxt['entry']['media$group']);
             	youtubeInfo = {
             		thumbnail: thumbnailLink(videoid[1]),
