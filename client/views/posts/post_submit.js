@@ -70,7 +70,7 @@ var getYoutubeTranscriptArray = function (xml, postId) {
             originalText: text,
             transText: []
         }
-
+        // console.log("track "+track.originalText);
         allTracks.push(track);
     }
 
@@ -82,18 +82,18 @@ var youtubeTranscript = function(xml, videoId, postId){
 
 
     var sentences = getYoutubeTranscriptArray(xml, postId);
+    console.log(sentences);
+    for (var i = 0; i<sentences.length; i++){
+        Sentences.insert(sentences[i], function(err, id){
 
-	Sentences.insert(sentences, function(err, id){
-
-	});
-
-	return sentences;
+        });    
+    }
 }
 
-	Template.postSubmit.events({
-		'submit form': function(e) {
-			e.preventDefault();
-			var url = $(e.target).find('[name=url]').val();
+Template.postSubmit.events({
+  'submit form': function(e) {
+   e.preventDefault();
+   var url = $(e.target).find('[name=url]').val();
       	// var desctiption = $(e.target).find('[name=desctiption]').val();
       	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
       	var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
@@ -130,13 +130,15 @@ var youtubeTranscript = function(xml, videoId, postId){
                         console.log( "finished" );
                     });
 
-            	});
-            	
+                    Router.go('tranItem', {_id: id});
+
+                });
+
             	// console.log(youtubeInfo);
             }
         });
-      },
-      'click #youtubeinfo':function(e) {
+},
+'click #youtubeinfo':function(e) {
 		// alert('hehe');
 		var url = document.getElementById('youtubeurl').value;
 		// alert(url);
