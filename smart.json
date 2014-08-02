@@ -4,6 +4,7 @@
     "spin": {},
     "x-editable-bootstrap": {},
     "accounts-ui-bootstrap-3": {},
+    "iron-router-progress": {},
     "popcorn": {}
   }
 }
