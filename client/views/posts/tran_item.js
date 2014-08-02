@@ -18,59 +18,27 @@ if (Meteor.isClient) {
         });
     }
 
-    // Changes XML to JSON
-    function xmlToJson(xml) {
-
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType == 1) { // element
-            // do attributes
-            if (xml.attributes.length > 0) {
-                obj["@attributes"] = {};
-                for (var j = 0; j < xml.attributes.length; j++) {
-                    var attribute = xml.attributes.item(j);
-                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-                }
-            }
-        } else if (xml.nodeType == 3) { // text
-            obj = xml.nodeValue;
-        }
-
-        // do children
-        if (xml.hasChildNodes()) {
-            for(var i = 0; i < xml.childNodes.length; i++) {
-                var item = xml.childNodes.item(i);
-                var nodeName = item.nodeName;
-                if (typeof(obj[nodeName]) == "undefined") {
-                    obj[nodeName] = xmlToJson(item);
-                } else {
-                    if (typeof(obj[nodeName].push) == "undefined") {
-                        var old = obj[nodeName];
-                        obj[nodeName] = [];
-                        obj[nodeName].push(old);
-                    }
-                    obj[nodeName].push(xmlToJson(item));
-                }
-            }
-        }
-        return obj;
-    };
+    function getYoutubeUrl(youtubeId) {
+        return "https://www.youtube.com/watch?v=" + youtubeId;
+    }
 
     Template.tranItem.rendered = function () {
-        var video = Popcorn.youtube('#youtube-video', 'https://www.youtube.com/watch?v=1qL74-K3wuc');
-        var currentTrackId;
+        console.log("data = ");
+        console.log(this.data.post);
+        console.log(this.data.sentences);
+
+        var yotubeUrl = getYoutubeUrl(this.data.post.videoId);
+        var video = Popcorn.youtube('#youtube-video', yotubeUrl);
+        var currentTrackOrder = -1;
         var eventDiv = document.getElementById("footnotediv");
-        var allTracks = [];
+        var allTracks = this.data.sentences;
         var chScrollPositions = [];
         var chapters = [];
 
         function initEditable() {
             $('.editable').editable({
                 success: function(response, newValue) {
-                    // alert(newValue);
-                    alert(this);
-                    // <do something with newValue - usually a collection.update call>
+                    alert($(this).attr("sentence_id"));
                 }
             });
         }
@@ -81,18 +49,20 @@ if (Meteor.isClient) {
               len = text.length,
               result = []; 
 
-              for( var i = 0; i < len; i++ ) {
-                result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
-            }
-            $(this).html(result.join(' '));
-        });
+                for( var i = 0; i < len; i++ ) {
+                    result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+                }
+                $(this).html(result.join(' '));
+            });
         }
-        function addTranscriptScrollBox(allTracks) {
+        function addTranscriptScrollBox() {
             var tranList = $('#demo-stage').find('ul');
             for (var i = 0; i < allTracks.length; i++) {
-                var text = allTracks[i].text;
-                var leftHtml = '<div class="left-tran" id= ' + '"sentence' + i + '"' + '>' + text + '</div>';
-                var rightHtml = '<span class="editable right-tran" data-placement="bottom" data-type="textarea" id= ' + '"transentence' + i + '"' + '>' + text + '</span>';
+                var id = allTracks[i]._id;
+                var text = allTracks[i].originalText;
+                var trans = allTracks[i].transText[0]?allTracks[i].transText[0]:"";
+                var leftHtml = '<div class="left-tran" sentence_id= ' + '"' + id + '"' + '>' + text + '</div>';
+                var rightHtml = '<span class="editable right-tran" data-placement="bottom" data-type="textarea" sentence_id= ' + '"' + id + '"' + '>' + trans + '</span>';
                 var html = '<div class="tran">' + leftHtml + rightHtml + '</div>';
                 tranList.append(html);
             }
@@ -110,40 +80,27 @@ if (Meteor.isClient) {
 
         }
 
-        function addTranscript(jsonObj) {
-            var transcript = jsonObj.transcript;
-            var tracks = transcript.text;
-            console.log(tracks);
-            for (var i = 0; i < tracks.length; i++) {
-                var text = tracks[i]["#text"];
-                var start = parseFloat(tracks[i]["@attributes"].start);
-                var dur = parseFloat(tracks[i]["@attributes"].dur);
-                var end = start + dur;
-                var track = {
-                    start: start,
-                    end: end,
-                    text: text
-                }
-
-                allTracks.push(track);
-
+        function addTranscript() {
+            for (var i = 0; i < allTracks.length; i++) {
+                var track = allTracks[i];
                 video.footnote({
-                    id: i,
-                    start: start,
-                    end: end,
-                    text: text,
+                    order: track.order,
+                    start: track.start,
+                    end: track.end,
+                    text: track.originalText,
                     target: "footnotediv"
-                });
+                })
             }
+
             video.on("trackstart", function(track) {
-                console.log(track.id);
-                currentTrackId = track.id;
+                console.log(track.order);
+                currentTrackOrder = track.order;
                 // Apply the "large" class to the text in event-div
                 eventDiv.className = "large";
                 // Log the event to the console
                 console.log("start!");
-                chapters.eq(track.id).addClass('active'); // Set Next Chapter Active
-                $('#demo-stage').scrollTo(chScrollPositions[track.id]);
+                chapters.eq(track.order).addClass('active'); // Set Next Chapter Active
+                $('#demo-stage').scrollTo(chScrollPositions[track.order]);
 
             });
 
@@ -157,41 +114,20 @@ if (Meteor.isClient) {
 
             video.on("pause", function() {
                 //TODO : cuong
-                console.log(currentTrackId);
-                var listWords = allTracks[currentTrackId].text.split(/\W+/);
-                console.log(listWords);
+                console.log(currentTrackOrder);
+                //var listWords = allTracks[currentTrackOrder].originalText.split(/\W+/);
+                //console.log(listWords);
 
             });
         };
 
-        var jqxhr = $.get( "http://video.google.com/timedtext?lang=en&v=1qL74-K3wuc", function(responseTxt, statusTxt, xhr) {
-            console.log( "success" );
-            console.log(statusTxt);
-
-            var jsonObj = xmlToJson( responseTxt );
-            addTranscript(jsonObj);
-            addTranscriptScrollBox(allTracks);
-            initChScrollPositions();
-            console.log("end");
-        })
-        .done(function() {
-            console.log( "second success" );
-        })
-        .fail(function() {
-            console.log( "error" );
-        })
-        .always(function() {
-            console.log( "finished" );
-        });
+        console.log("addTrans");
+        addTranscript();
+        console.log("addScrollBox");
+        addTranscriptScrollBox();
+        console.log("initCh");
+        initChScrollPositions();
 
     }
-
-    Template.tranItem.helpers({
-        posts: function(){
-            Session.set(postId, this._id);
-            console.log("Data = " + this._id);
-            return Posts.find({id:this._id},{sort: {submitted:-1}});
-        }
-    });
 
 }
