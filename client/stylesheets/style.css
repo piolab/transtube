@@ -24,7 +24,8 @@
 	text-align: center;
 }
 .word {
-	height:100px;
+	height:350px;
+	overflow: auto;
 }
 .tran {
 	color: #1d9dd9;
@@ -46,7 +47,7 @@
 }
 #words{
 	float:left;
-	width:300px;
+	width:500px;
 }
 .left-tran {
     display: inline-block;

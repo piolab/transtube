@@ -79,7 +79,7 @@ if (Meteor.isClient) {
 
         function initTranlatable() {
             $('.left-tran').each(function(){
-              var text = $(this).html().split(/\W+/);
+              var text = $(this).html().split(/\b\s+(?!$)/);
               len = text.length,
               result = []; 
 
@@ -158,11 +158,12 @@ if (Meteor.isClient) {
             });
 
             video.on("pause", function() {
+                
                 //TODO : cuong
                 console.log(currentTrackId);
-                var listWords = allTracks[currentTrackId].text.split(/\W+/);
+                var listWords = allTracks[currentTrackId].text.split(/\b\s+(?!$)/);
                 var xUl = $('.word');
-
+                xUl.empty();
                 var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
                 $.each(listWords,function(i,word){
 
@@ -174,7 +175,7 @@ if (Meteor.isClient) {
                         '&q='+encodeURIComponent(listWords[i]),
                        
                         success: function(trans) {
-                            xUl.empty();
+
                             xUl.append('<li class="list-group-item">'+word+'     <=>        '+trans.data.translations[0].translatedText +'</li>');
                         }
 
