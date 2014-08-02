@@ -23,7 +23,9 @@
 .main-translate {
 	text-align: center;
 }
-
+.word {
+	height:100px;
+}
 .tran {
 	color: #1d9dd9;
 	pointer: cursor: pointer;
@@ -41,6 +43,10 @@
 	/*padding-left: 50px;*/
 	padding-right: 50px;
 	float:left;
+}
+#words{
+	float:left;
+	width:300px;
 }
 .left-tran {
     display: inline-block;

@@ -161,39 +161,59 @@ if (Meteor.isClient) {
                 //TODO : cuong
                 console.log(currentTrackId);
                 var listWords = allTracks[currentTrackId].text.split(/\W+/);
+                var xUl = $('.word');
+
+                var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
+                $.each(listWords,function(i,word){
+
+                    $.ajax({
+                        dataType: 'jsonp',
+
+                        url: TRANSLATE_URL_PREFIX+'&source='+encodeURIComponent('en')+
+                        '&target='+encodeURIComponent('vi')+
+                        '&q='+encodeURIComponent(listWords[i]),
+                       
+                        success: function(trans) {
+                            xUl.empty();
+                            xUl.append('<li class="list-group-item">'+word+'     <=>        '+trans.data.translations[0].translatedText +'</li>');
+                        }
+
+                    });
+                });
+
                 console.log(listWords);
 
             });
-        };
+};
 
-        var jqxhr = $.get( "http://video.google.com/timedtext?lang=en&v=1qL74-K3wuc", function(responseTxt, statusTxt, xhr) {
-            console.log( "success" );
-            console.log(statusTxt);
+var jqxhr = $.get( "http://video.google.com/timedtext?lang=en&v=1qL74-K3wuc", function(responseTxt, statusTxt, xhr) {
+    console.log( "success" );
+    console.log(statusTxt);
 
-            var jsonObj = xmlToJson( responseTxt );
-            addTranscript(jsonObj);
-            addTranscriptScrollBox(allTracks);
-            initChScrollPositions();
-            console.log("end");
-        })
-        .done(function() {
-            console.log( "second success" );
-        })
-        .fail(function() {
-            console.log( "error" );
-        })
-        .always(function() {
-            console.log( "finished" );
-        });
+    var jsonObj = xmlToJson( responseTxt );
+    addTranscript(jsonObj);
+    addTranscriptScrollBox(allTracks);
+    initChScrollPositions();
+    console.log("end");
+})
+.done(function() {
+    console.log( "second success" );
+})
+.fail(function() {
+    console.log( "error" );
+})
+.always(function() {
+    console.log( "finished" );
+});
 
+}
+
+Template.tranItem.helpers({
+    posts: function(){
+        Session.set(postId, this._id);
+        console.log("Data = " + this._id);
+        return Posts.find({id:this._id},{sort: {submitted:-1}});
     }
-
-    Template.tranItem.helpers({
-        posts: function(){
-            Session.set(postId, this._id);
-            console.log("Data = " + this._id);
-            return Posts.find({id:this._id},{sort: {submitted:-1}});
-        }
-    });
+});
 
 }
