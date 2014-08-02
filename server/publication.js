@@ -2,8 +2,8 @@ Meteor.publish('posts',function(options){
 	return Posts.find({},options);
 });
 
-Meteor.publish('sentences', function(){
-	return Sentences.find();
+Meteor.publish('sentences', function(options){
+	return Sentences.find({}, options);
 });
 
 Meteor.publish('words', function(postId){
