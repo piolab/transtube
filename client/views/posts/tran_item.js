@@ -18,50 +18,16 @@ if (Meteor.isClient) {
         });
     }
 
-    // Changes XML to JSON
-    function xmlToJson(xml) {
-
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType == 1) { // element
-            // do attributes
-            if (xml.attributes.length > 0) {
-                obj["@attributes"] = {};
-                for (var j = 0; j < xml.attributes.length; j++) {
-                    var attribute = xml.attributes.item(j);
-                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-                }
-            }
-        } else if (xml.nodeType == 3) { // text
-            obj = xml.nodeValue;
-        }
-
-        // do children
-        if (xml.hasChildNodes()) {
-            for(var i = 0; i < xml.childNodes.length; i++) {
-                var item = xml.childNodes.item(i);
-                var nodeName = item.nodeName;
-                if (typeof(obj[nodeName]) == "undefined") {
-                    obj[nodeName] = xmlToJson(item);
-                } else {
-                    if (typeof(obj[nodeName].push) == "undefined") {
-                        var old = obj[nodeName];
-                        obj[nodeName] = [];
-                        obj[nodeName].push(old);
-                    }
-                    obj[nodeName].push(xmlToJson(item));
-                }
-            }
-        }
-        return obj;
-    };
+    function getYoutubeUrl(youtubeId) {
+        return "https://www.youtube.com/watch?v=" + youtubeId;
+    }
 
     Template.tranItem.rendered = function () {
-        var video = Popcorn.youtube('#youtube-video', 'https://www.youtube.com/watch?v=1qL74-K3wuc');
-        var currentTrackId;
+        var yotubeUrl = getYoutubeUrl(this.data.post.videoId);
+        var video = Popcorn.youtube('#youtube-video', yotubeUrl);
+        var currentTrackOrder = -1;
         var eventDiv = document.getElementById("footnotediv");
-        var allTracks = [];
+        var allTracks = this.data.sentences;
         var chScrollPositions = [];
         var chapters = [];
 
@@ -85,7 +51,7 @@ if (Meteor.isClient) {
             $(this).html(result.join(' '));
         });
         }
-        function addTranscriptScrollBox(allTracks) {
+        function addTranscriptScrollBox() {
             var tranList = $('#demo-stage').find('ul');
             for (var i = 0; i < allTracks.length; i++) {
                 var id = allTracks[i]._id;
@@ -110,40 +76,27 @@ if (Meteor.isClient) {
 
         }
 
-        function addTranscript(jsonObj) {
-            var transcript = jsonObj.transcript;
-            var tracks = transcript.text;
-            console.log(tracks);
-            for (var i = 0; i < tracks.length; i++) {
-                var text = tracks[i]["#text"];
-                var start = parseFloat(tracks[i]["@attributes"].start);
-                var dur = parseFloat(tracks[i]["@attributes"].dur);
-                var end = start + dur;
-                var track = {
-                    start: start,
-                    end: end,
-                    text: text
-                }
-
-                allTracks.push(track);
-
+        function addTranscript() {
+            for (var i = 0; i < allTracks.length; i++) {
+                var track = allTracks[i];
                 video.footnote({
-                    id: i,
-                    start: start,
-                    end: end,
-                    text: text,
+                    order: track.order,
+                    start: track.start,
+                    end: track.end,
+                    text: track.originalText,
                     target: "footnotediv"
-                });
+                })
             }
+
             video.on("trackstart", function(track) {
-                console.log(track.id);
-                currentTrackId = track.id;
+                console.log(track.order);
+                currentTrackOrder = track.order;
                 // Apply the "large" class to the text in event-div
                 eventDiv.className = "large";
                 // Log the event to the console
                 console.log("start!");
-                chapters.eq(track.id).addClass('active'); // Set Next Chapter Active
-                $('#demo-stage').scrollTo(chScrollPositions[track.id]);
+                chapters.eq(track.order).addClass('active'); // Set Next Chapter Active
+                $('#demo-stage').scrollTo(chScrollPositions[track.order]);
 
             });
 
@@ -157,8 +110,8 @@ if (Meteor.isClient) {
 
             video.on("pause", function() {
                 //TODO : cuong
-                console.log(currentTrackId);
-                var listWords = allTracks[currentTrackId].text.split(/\W+/);
+                console.log(currentTrackOrder);
+                var listWords = allTracks[currentTrackOrder].originalText.split(/\W+/);
                 var xUl = $('.word');
 
                 var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
@@ -182,7 +135,7 @@ if (Meteor.isClient) {
                 console.log(listWords);
 
             });
-};
+        };
 
         console.log("addTrans");
         addTranscript();
