@@ -59,6 +59,7 @@ if (Meteor.isClient) {
 
     Template.tranItem.rendered = function () {
         var video = Popcorn.youtube('#youtube-video', 'https://www.youtube.com/watch?v=1qL74-K3wuc');
+        var currentTrackId;
         var eventDiv = document.getElementById("footnotediv");
         var allTracks = [];
         var chScrollPositions = [];
@@ -138,6 +139,7 @@ if (Meteor.isClient) {
             }
             video.on("trackstart", function(track) {
                 console.log(track.id);
+                currentTrackId = track.id;
                 // Apply the "large" class to the text in event-div
                 eventDiv.className = "large";
                 // Log the event to the console
@@ -153,6 +155,14 @@ if (Meteor.isClient) {
                 eventDiv.className = "small";
                 // Log the event to the console
                 console.log("fired!");
+            });
+
+            video.on("pause", function() {
+                //TODO : cuong
+                console.log(currentTrackId);
+                var listWords = allTracks[currentTrackId].text.split(/\W+/);
+                console.log(listWords);
+
             });
         };
 
@@ -177,5 +187,13 @@ if (Meteor.isClient) {
         });
 
     }
+
+    Template.tranItem.helpers({
+        posts: function(){
+            Session.set(postId, this._id);
+            console.log("Data = " + this._id);
+            return Posts.find({id:this._id},{sort: {submitted:-1}});
+        }
+    });
 
 }
