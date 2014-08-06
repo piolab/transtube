@@ -1,0 +1,9 @@
+<template name="sentenceItem">
+    <div class="tran">
+        <div class="left-tran" sentence_id="{{_id}}"> {{originalText}} </div>
+        <span class="editable right-tran" data-placement="bottom" data-type="textarea" sentence_id="{{_id}}">
+            {{#if transText.length}}
+                {{transText[transText.length - 1]}}
+            {{else}}Translate this sentences{{/if}}</span>
+    </div>
+</template>
