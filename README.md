@@ -8,7 +8,7 @@ We also provide some tools to make people understand the video content.
         
         
 ###Todo
-
+- Refactor code (Phien)
 - Git branch to development (Cuong)
 - Deploy staging, production (Cuong)
 - Categories
