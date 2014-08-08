@@ -8,10 +8,6 @@ Template.tranItem.rendered = function () {
     var chScrollPositions = [];
     var chapters = [];
 
-    function initEditable() {
-        ''
-    }
-
     function initTranlatable() {
         $('.left-tran').each(function(){
           var text = $(this).html().split(/\b\s+(?!$)/);
@@ -25,7 +21,6 @@ Template.tranItem.rendered = function () {
     });
     }
     function addTranscriptScrollBox() {
-        initEditable();
         initTranlatable();
     }
 
@@ -101,6 +96,8 @@ Template.tranItem.rendered = function () {
 
 Template.tranItem.helpers ({
     sentences: function() {
+        var sens = Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
+        console.log(sens[0].transText[0]);
         return Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
     }
 })
