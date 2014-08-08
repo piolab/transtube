@@ -1,16 +1,3 @@
-var youtubeUrlPrefix = function(id){
-	// https://gdata.youtube.com/feeds/api/videos/psx-eHmqBvE?v=2&alt=json
-	return 'https://gdata.youtube.com/feeds/api/videos/'+id+'?v=2&alt=json';
-};
-
-var youtubeUrlTranscript = function(id) {
-    return 'http://video.google.com/timedtext?lang=en&v=' + id;
-}
-
-var thumbnailLink = function(id){
-	return 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'
-};
-
 // Changes XML to JSON
 var xmlToJson = function (xml) {
 
@@ -96,13 +83,13 @@ Template.postSubmit.events({
    var url = $(e.target).find('[name=url]').val();
       	// var desctiption = $(e.target).find('[name=desctiption]').val();
       	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-      	var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
+      	var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
       	var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
       		if (responseTxt){
       			var responseMedia = responseTxt['entry']['media$group'];
             	// console.log(responseTxt['entry']['media$group']);
             	youtubeInfo = {
-            		thumbnail: thumbnailLink(videoid[1]),
+            		thumbnail: Meteor.Youtube.getThumbnailLink(videoid[1]),
             		title: responseMedia['media$title']['$t']
             	};
             	Posts.insert({
@@ -112,7 +99,7 @@ Template.postSubmit.events({
             		// desctiption: desctiption,
             		submitted:new Date().getTime()
             	},function(err,id){
-            		var transcriptXmlUrl = youtubeUrlTranscript(videoid[1]);
+            		var transcriptXmlUrl = Meteor.Youtube.getYoutubeUrlTranscript(videoid[1]);
                     console.log(transcriptXmlUrl);
                     var jqxhr = $.get( transcriptXmlUrl, function(responseTxt, statusTxt, xhr) {
                         console.log( "success" );
@@ -143,13 +130,13 @@ Template.postSubmit.events({
 		var url = document.getElementById('youtubeurl').value;
 		// alert(url);
 		var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-		var youtubeUrlApi = youtubeUrlPrefix(videoid[1]);
+		var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
 		var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
 			if (responseTxt){
 				var responseMedia = responseTxt['entry']['media$group'];
             	// console.log(responseTxt['entry']['media$group']);
             	youtubeInfo = {
-            		thumbnail: thumbnailLink(videoid[1]),
+            		thumbnail: Meteor.Youtube.getThumbnailLink(videoid[1]),
             		title: responseMedia['media$title']['$t']
             	};
             	Posts.insert({

@@ -97,7 +97,6 @@ Template.tranItem.rendered = function () {
 Template.tranItem.helpers ({
     sentences: function() {
         var sens = Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
-        console.log(sens[0].transText[0]);
-        return Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
+        return sens;
     }
 })
