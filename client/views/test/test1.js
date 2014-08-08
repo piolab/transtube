@@ -1,4 +1,5 @@
 // need to be refactor
+// test a gain
 if (Meteor.isClient) {
   Template.tranItem.events({
     'mouseover .target_word': function (event) {
