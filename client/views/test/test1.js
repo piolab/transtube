@@ -1,4 +1,5 @@
 if (Meteor.isClient) {
+  /**
   Template.tranItem.events({
     'mouseover .target_word': function (event) {
       var keyword = event.target.innerText;
@@ -49,4 +50,5 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
   });
+  */
 }

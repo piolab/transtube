@@ -65,13 +65,14 @@ Template.tranItem.rendered = function () {
             var listWords = allTracks[currentTrackOrder].originalText.split(/\W+/);
             var xUl = $('.word');
             xUl.empty();
-            var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
+            var apiKey = Config.GoogleApi.TranslateKey[Config.DevStatus];
+            var translateUrlPrefix = Meteor.Translate.getGoogleTranslateUrlPrefix(apiKey);
             $.each(listWords,function(i,word){
 
                 $.ajax({
                     dataType: 'jsonp',
 
-                    url: TRANSLATE_URL_PREFIX+'&source='+encodeURIComponent('en')+
+                    url: translateUrlPrefix+'&source='+encodeURIComponent('en')+
                     '&target='+encodeURIComponent('vi')+
                     '&q='+encodeURIComponent(listWords[i]),
 
