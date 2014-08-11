@@ -65,13 +65,14 @@ Template.tranItem.rendered = function () {
             var listWords = allTracks[currentTrackOrder].originalText.split(/\W+/);
             var xUl = $('.word');
             xUl.empty();
-            var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
+            var apiKey = Config.GoogleApi.TranslateKey[Config.DevStatus];
+            var translateUrlPrefix = Meteor.Translate.getGoogleTranslateUrlPrefix(apiKey);
             $.each(listWords,function(i,word){
 
                 $.ajax({
                     dataType: 'jsonp',
 
-                    url: TRANSLATE_URL_PREFIX+'&source='+encodeURIComponent('en')+
+                    url: translateUrlPrefix+'&source='+encodeURIComponent('en')+
                     '&target='+encodeURIComponent('vi')+
                     '&q='+encodeURIComponent(listWords[i]),
 
@@ -97,7 +98,6 @@ Template.tranItem.rendered = function () {
 Template.tranItem.helpers ({
     sentences: function() {
         var sens = Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
-        console.log(sens[0].transText[0]);
-        return Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
+        return sens;
     }
 })

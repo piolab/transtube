@@ -3,9 +3,7 @@ Template.sentenceItem.rendered = function () {
 		$('.editable').editable({
             success: function(response, newValue) {
                 var id = $(this).attr("sentence_id");
-
                 Sentences.update(id,{$push:{transText:newValue}});
-                // alert($(this).attr("sentence_id"));
             }
         });
     }
