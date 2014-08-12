@@ -2,9 +2,10 @@
   "packages": {
     "iron-router": {},
     "spin": {},
-    "x-editable-bootstrap": {},
     "accounts-ui-bootstrap-3": {},
     "iron-router-progress": {},
-    "popcorn": {}
+    "popcorn": {},
+    "bootstrap-3": {},
+    "x-editable-bootstrap": {}
   }
 }

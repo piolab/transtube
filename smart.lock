@@ -4,10 +4,11 @@
     "basePackages": {
       "iron-router": {},
       "spin": {},
-      "x-editable-bootstrap": {},
       "accounts-ui-bootstrap-3": {},
       "iron-router-progress": {},
-      "popcorn": {}
+      "popcorn": {},
+      "bootstrap-3": {},
+      "x-editable-bootstrap": {}
     },
     "packages": {
       "iron-router": {
@@ -20,15 +21,10 @@
         "tag": "v2.0.4",
         "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
       },
-      "x-editable-bootstrap": {
-        "git": "https://github.com/nate-strauser/meteor-x-editable-bootstrap.git",
-        "tag": "v1.5.1",
-        "commit": "ddb9e4523b570f88d96c4fbafa5f6883e544baf8"
-      },
       "accounts-ui-bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
-        "tag": "v0.3.3",
-        "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
+        "tag": "v0.3.4",
+        "commit": "9f006ee48d869877d90d54ac75b54550a587df8f"
       },
       "iron-router-progress": {
         "git": "https://github.com/Multiply/iron-router-progress.git",
@@ -40,15 +36,20 @@
         "tag": "v0.1.0",
         "commit": "20c5e438f0d1634f7c2ca3b0f78ac0bf63cb2e7c"
       },
-      "iron-layout": {
-        "git": "https://github.com/EventedMind/iron-layout.git",
-        "tag": "v0.2.0",
-        "commit": "4a2d53e35ba036b0c189c7ceca34be494d4c6c97"
-      },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v3.2.0-1",
         "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
+      },
+      "x-editable-bootstrap": {
+        "git": "https://github.com/nate-strauser/meteor-x-editable-bootstrap.git",
+        "tag": "v1.5.1",
+        "commit": "ddb9e4523b570f88d96c4fbafa5f6883e544baf8"
+      },
+      "iron-layout": {
+        "git": "https://github.com/EventedMind/iron-layout.git",
+        "tag": "v0.2.0",
+        "commit": "4a2d53e35ba036b0c189c7ceca34be494d4c6c97"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
