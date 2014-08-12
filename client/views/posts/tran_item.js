@@ -9,16 +9,16 @@ Template.tranItem.rendered = function () {
     var chapters = [];
 
     function initTranlatable() {
-        // $('.left-tran').each(function(){
-        //   var text = $(this).html().split(' ');
-        //   len = text.length,
-        //   result = [];
+        $('.left-tran').each(function(){
+          var text = $(this).html().split(' ');
+          len = text.length,
+          result = [];
 
-        //   for( var i = 0; i < len; i++ ) {
-        //     result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
-        // }
-        // $(this).html(result.join(' '));
-        // });
+          for( var i = 0; i < len; i++ ) {
+            result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+        }
+        $(this).html(result.join(' '));
+        });
     }
     function addTranscriptScrollBox() {
         initTranlatable();
