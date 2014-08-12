@@ -18,5 +18,8 @@ Template.sentenceItem.helpers ({
 			return trans[trans.length - 1];
 		}
 		return Meteor.PioConstants.UNTRAN_TEXT_MESSAGE;
+	},
+	originalText1: function() {
+		return this.originalText+' ';
 	}
 })

@@ -1,4 +1,3 @@
-
 var getYoutubeTranscriptArray = function (xml, postId) {
     var allTracks = [];
     var jsonObj = PioUtils.JsonUtils.xmlToJson(xml);
@@ -6,7 +5,8 @@ var getYoutubeTranscriptArray = function (xml, postId) {
     var tracks = transcript.text;
     console.log(tracks);
     for (var i = 0; i < tracks.length; i++) {
-        var text = tracks[i]["#text"];
+        var text = PioUtils.JsonUtils.htmlEntities(tracks[i]["#text"]);
+        
         var start = parseFloat(tracks[i]["@attributes"].start);
         var dur = parseFloat(tracks[i]["@attributes"].dur);
         var end = start + dur;
@@ -28,8 +28,6 @@ var getYoutubeTranscriptArray = function (xml, postId) {
 
 // Phien 
 var youtubeTranscript = function(xml, videoId, postId){
-
-
     var sentences = getYoutubeTranscriptArray(xml, postId);
     console.log(sentences);
     for (var i = 0; i<sentences.length; i++){
@@ -79,7 +77,7 @@ Template.postSubmit.events({
                         console.log( "finished" );
                     });
 
-                    Router.go('tranItem', {_id: id});
+                    //Router.go('tranItem', {_id: id});
 
                 });
 
