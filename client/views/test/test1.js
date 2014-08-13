@@ -2,11 +2,14 @@
 // test a gain
 if (Meteor.isClient) {
   Template.tranItem.events({
+    'mouseleave .target_word': function(event){
+      $(event.target).popover('hide');
+    },
     'mouseover .target_word': function (event) {
       var keyword = event.target.innerText;
       var TRANSLATE_URL_PREFIX = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyC1ZbsQ4ngsrjM8uMaGQsLF7ZaKfMlDFTY';
-      // alert(keyword);
       keyword = keyword.toLowerCase();
+      var contentShow = '';
       $.ajax({
         dataType: 'jsonp',
 
@@ -14,18 +17,21 @@ if (Meteor.isClient) {
         // '&target='+encodeURIComponent('vi')+
         // '&q='+encodeURIComponent(keyword),
         url: 'http://glosbe.com/gapi/translate?from=eng&dest=vie&format=json&phrase='+encodeURIComponent(keyword)+'&pretty=true',
+        // cache: true,
         success: function(trans) {
-          var contentShow = '';
+
           console.log(trans['tuc'].length);
           for (var i = 0; i<trans['tuc'].length; i++){
-            if (trans['tuc'][i]['phrase'] && trans['tuc'][i]['authors'][0]===2744)
+            if (trans['tuc'][i]['phrase']){
               contentShow += '<h4 class="translate-popover">'+trans['tuc'][i]['phrase']['text']+'</h4>';
+              // console.log(trans['tuc'][i]['phrase']['text']);
+            }
           }
+          
           $(event.target).popover({
             html: true,
-            // title: trans.data.translations[0].translatedText,
             content: contentShow
-          });
+          }).popover('show');
         }
 
       });

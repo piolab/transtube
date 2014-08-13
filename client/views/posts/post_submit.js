@@ -29,13 +29,14 @@ var getYoutubeTranscriptArray = function (xml, postId) {
 };
 
 // Phien 
-var youtubeTranscript = function(xml, videoId, postId){
+var addTranscriptToSentences = function(xml, videoId, postId, callback){
     var sentences = getYoutubeTranscriptArray(xml, postId);
     for (var i = 0; i<sentences.length; i++){
         Sentences.insert(sentences[i], function(err, id){
 
         });    
     }
+    callback();
 }
 
 Template.postSubmit.events({
@@ -63,10 +64,9 @@ Template.postSubmit.events({
             		var transcriptXmlUrl = Meteor.Youtube.getYoutubeUrlTranscript(videoid[1]);
                     console.log(transcriptXmlUrl);
                     var jqxhr = $.get( transcriptXmlUrl, function(responseTxt, statusTxt, xhr) {
-                        console.log( "success" );
-                        console.log(statusTxt);
-                        console.log(responseTxt);
-                        youtubeTranscript(responseTxt, videoid[1], id);
+                        addTranscriptToSentences(responseTxt, videoid[1], id, function(){
+                            Router.go('tranItem', {_id: id});
+                        });
                         console.log("end");
                     }).done(function() {
                         console.log( "second success" );
@@ -77,9 +77,6 @@ Template.postSubmit.events({
                     .always(function() {
                         console.log( "finished" );
                     });
-
-                    Router.go('tranItem', {_id: id});
-
                 });
 
             	// console.log(youtubeInfo);
