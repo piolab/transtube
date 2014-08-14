@@ -41,53 +41,67 @@ var addTranscriptToSentences = function(xml, videoId, postId, callback){
 
 Template.postSubmit.events({
   'submit form': function(e) {
-   e.preventDefault();
-   var url = $(e.target).find('[name=url]').val();
-      	// var desctiption = $(e.target).find('[name=desctiption]').val();
-      	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-      	var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
-      	var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
-      		if (responseTxt){
-      			var responseMedia = responseTxt['entry']['media$group'];
-            	// console.log(responseTxt['entry']['media$group']);
-            	youtubeInfo = {
-            		thumbnail: Meteor.Youtube.getThumbnailLink(videoid[1]),
-            		title: responseMedia['media$title']['$t']
-            	};
-            	Posts.insert({
-            		videoId: videoid[1],
-            		title: youtubeInfo.title,
-            		videoThumbnail: youtubeInfo.thumbnail,
-            		// desctiption: desctiption,
-            		submitted:new Date().getTime()
-            	},function(err,id){
-            		var transcriptXmlUrl = Meteor.Youtube.getYoutubeUrlTranscript(videoid[1]);
-                    console.log(transcriptXmlUrl);
-                    var jqxhr = $.get( transcriptXmlUrl, function(responseTxt, statusTxt, xhr) {
-                        addTranscriptToSentences(responseTxt, videoid[1], id, function(){
-                            Router.go('tranItem', {_id: id});
-                        });
-                        console.log("end");
-                    }).done(function() {
-                        console.log( "second success" );
-                    })
-                    .fail(function() {
-                        console.log( "error" );
-                    })
-                    .always(function() {
-                        console.log( "finished" );
-                    });
-                });
+    e.preventDefault();
+    var url = $(e.target).find('[name=url]').val();
+    var videoId = Meteor.Youtube.getIdFromLink(url);
+    var post = {
+        videoId: videoId[1]
+    }
 
-            	// console.log(youtubeInfo);
-            }
-        });
+    Meteor.call('post', post, function(error, id) {
+        if (error) {
+            Errors.throw(error.reason);
+        }
+
+        Router.go('tranItem', {_id: id});
+    });
+   //    	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+   //    	var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
+   //    	var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
+   //    		if (responseTxt){
+   //    			var responseMedia = responseTxt['entry']['media$group'];
+   //          	// console.log(responseTxt['entry']['media$group']);
+   //          	youtubeInfo = {
+   //          		thumbnail: Meteor.Youtube.getThumbnailLink(videoid[1]),
+   //          		title: responseMedia['media$title']['$t']
+   //          	};
+   //          	Posts.insert({
+   //          		videoId: videoid[1],
+   //          		title: youtubeInfo.title,
+   //          		videoThumbnail: youtubeInfo.thumbnail,
+   //          		// desctiption: desctiption,
+   //          		submitted:new Date().getTime()
+   //          	},function(err,id){
+   //          		var transcriptXmlUrl = Meteor.Youtube.getYoutubeUrlTranscript(videoid[1]);
+   //                  console.log(transcriptXmlUrl);
+   //                  var jqxhr = $.get( transcriptXmlUrl, function(responseTxt, statusTxt, xhr) {
+   //                      addTranscriptToSentences(responseTxt, videoid[1], id, function(){
+   //                          Router.go('tranItem', {_id: id});
+   //                      });
+   //                      console.log("end");
+   //                  }).done(function() {
+   //                      console.log( "second success" );
+   //                  })
+   //                  .fail(function() {
+   //                      console.log( "error" );
+   //                  })
+   //                  .always(function() {
+   //                      console.log( "finished" );
+   //                  });
+   //              });
+
+   //          	// console.log(youtubeInfo);
+   //          }
+   //      });
 },
 'click #youtubeinfo':function(e) {
+
+    throw Error("message");
 		// alert('hehe');
 		var url = document.getElementById('youtubeurl').value;
+        var videoid = Youtube.Meteor.getIdFromLink(url);
 		// alert(url);
-		var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+		// var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 		var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
 		var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
 			if (responseTxt){

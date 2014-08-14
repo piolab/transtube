@@ -7,7 +7,8 @@
       "x-editable-bootstrap": {},
       "accounts-ui-bootstrap-3": {},
       "iron-router-progress": {},
-      "popcorn": {}
+      "popcorn": {},
+      "errors": {}
     },
     "packages": {
       "iron-router": {
@@ -27,8 +28,8 @@
       },
       "accounts-ui-bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
-        "tag": "v0.3.3",
-        "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
+        "tag": "v0.3.4",
+        "commit": "9f006ee48d869877d90d54ac75b54550a587df8f"
       },
       "iron-router-progress": {
         "git": "https://github.com/Multiply/iron-router-progress.git",
@@ -39,6 +40,11 @@
         "git": "https://github.com/santihbc/meteor-popcorn-js.git",
         "tag": "v0.1.0",
         "commit": "20c5e438f0d1634f7c2ca3b0f78ac0bf63cb2e7c"
+      },
+      "errors": {
+        "git": "https://github.com/tmeasday/meteor-errors.git",
+        "tag": "v0.2.1",
+        "commit": "f2af03510a9e3d9952601f5f091aa76bfbcbf224"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
