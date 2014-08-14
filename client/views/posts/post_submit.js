@@ -38,8 +38,13 @@ var addTranscriptToSentences = function(xml, videoId, postId, callback){
 }
 
 Template.postSubmit.events({
-  'submit form': function(e) {
-    e.preventDefault();
+
+    'submit form': function(e) {
+        Meteor.Youtube.getYoutubeCaptionsList("aD41o3L8tHY", null, function(){
+            console.log("CALL BACK");
+        });
+        e.preventDefault();
+        /*
     var url = $(e.target).find('[name=url]').val();
     var videoId = Meteor.Youtube.getIdFromLink(url);
     var post = {
@@ -52,7 +57,7 @@ Template.postSubmit.events({
         }
 
         Router.go('tranItem', {_id: id});
-    });
+    });*/
    //    	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
    //    	var youtubeUrlApi = Meteor.Youtube.getYutubeUrlPrefix(videoid[1]);
    //    	var jqxhr = $.get(youtubeUrlApi, function(responseTxt, statusTxt, xhr) {
@@ -91,8 +96,9 @@ Template.postSubmit.events({
    //          	// console.log(youtubeInfo);
    //          }
    //      });
-},
-'click #youtubeinfo':function(e) {
+
+    },
+    'click #youtubeinfo':function(e) {
 
     throw Error("message");
 		// alert('hehe');
