@@ -40,10 +40,12 @@ var addTranscriptToSentences = function(xml, videoId, postId, callback){
 Template.postSubmit.events({
 
     'submit form': function(e) {
-        Meteor.Youtube.getYoutubeCaptionsList("aD41o3L8tHY", null, function(){
-            console.log("CALL BACK");
-        });
         e.preventDefault();
+        Meteor.Youtube.getYoutubeCaptions("aD41o3L8tHY", null, "en", "English via dotsub", function(sentences){
+            console.log(sentences);
+            // alert($('<div/>').html(sentences[1].text).text());
+        });
+        
         /*
     var url = $(e.target).find('[name=url]').val();
     var videoId = Meteor.Youtube.getIdFromLink(url);
