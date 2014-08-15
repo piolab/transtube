@@ -4,7 +4,7 @@ Template.postItem.helpers({
 		return this.userId === Meteor.userId();
 	},
 	sqThumbnail: function() {
-		return this.thumbnail[3]["url"];
+		return this.thumbnail[1]["url"];
 	}
 	//todos: progress
 });
