@@ -14,3 +14,6 @@ iron-router-progress
 popcorn
 errors
 http
+profile
+accounts-google
+accounts-entry
