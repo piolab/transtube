@@ -37,9 +37,7 @@ Template.postSubmit.events({
             // Check if not caption list exist
             if (captionList.length === 0){
                 Errors.throw("There are no captions in this video");
-                return;
             }
-
 
             // If exist captions
             else{
@@ -47,9 +45,10 @@ Template.postSubmit.events({
                     console.log(youtubeData);
                     // Post youtube Data
                     Meteor.call('post', youtubeData, function(error, postId){
-                        console.log(postId);
+                        
                         if (error){
                             Errors.throw(error.reason);
+                            // Router.go('tranItem',{_id:error.details});
                         }
                         else {
                             for (var i = 0; i< captionList.length; i++){
