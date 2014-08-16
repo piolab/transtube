@@ -8,7 +8,8 @@
       "accounts-ui-bootstrap-3": {},
       "iron-router-progress": {},
       "popcorn": {},
-      "errors": {}
+      "errors": {},
+      "bootflat": {}
     },
     "packages": {
       "iron-router": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/tmeasday/meteor-errors.git",
         "tag": "v0.2.1",
         "commit": "f2af03510a9e3d9952601f5f091aa76bfbcbf224"
+      },
+      "bootflat": {
+        "git": "https://github.com/elie222/meteor-bootflat.git",
+        "tag": "v0.0.2",
+        "commit": "4a7ade8f5bff80e16d6aaf9d13d467e26a6ebca8"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
