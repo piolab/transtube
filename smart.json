@@ -7,6 +7,8 @@
     "iron-router-progress": {},
     "popcorn": {},
     "errors": {},
+    "profile": {},
+    "accounts-entry": {},
     "bootflat": {}
   }
 }

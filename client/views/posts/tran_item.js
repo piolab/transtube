@@ -97,7 +97,15 @@ Template.tranItem.rendered = function () {
 
 Template.tranItem.helpers ({
     sentences: function() {
-        var sens = Sentences.find({postId:Session.get("post_id")}, {sort: {order: 1}}).fetch();
-        return sens;
+        var captions = Captions.find({postId: Session.get("post_id")}).fetch();
+        captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
+        console.log(captions.sentences);
+        return captions.sentences;
+    },
+    captions: function(){
+        var captions = Captions.find({postId: Session.get("post_id")}).fetch();
+        captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
+        console.log(captions.sentences);
+        return captions.sentences;
     }
 })

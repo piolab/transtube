@@ -7,10 +7,12 @@
 				<!-- {{> m_editable options value="hello"}} -->
 				<div class="video-meta row-fluid">
 					<div class="thumbnail col-md-6">
-						<img src="{{videoThumbnail}}">
+						<img src="{{sqThumbnail}}">
 					</div>
 					<div class="col-md-6">
 						<a href="{{pathFor 'tranItem'}}" class="btn btn-success">Help Translate</a>
+						<span>{{duration}}</span>
+						<span>{{author}}</span>
 					</div>
 				</div>
 			</div>
