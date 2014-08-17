@@ -9,12 +9,10 @@ iron-router
 accounts-password
 spin
 x-editable-bootstrap
-accounts-ui-bootstrap-3
 iron-router-progress
 popcorn
 errors
 http
+accounts-ui-bootstrap-3-blaze
 bootflat
-profile
 accounts-google
-accounts-entry
