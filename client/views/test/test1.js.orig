@@ -82,4 +82,9 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+<<<<<<< HEAD
+cai deo gi day
 
+=======
+hihihihi
+>>>>>>> c3c20f7ac331f044769b802358eb57cec0502fac
