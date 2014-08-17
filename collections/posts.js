@@ -16,7 +16,7 @@
  			// Initlize post
  			post.submited = new Date().getTime();
  			post.userId = user._id;
- 			post.author = user["emails"][0]["address"];
+ 			// post.author = user["emails"][0]["address"];
 
  			var postId = Posts.insert(post);
  			return postId;

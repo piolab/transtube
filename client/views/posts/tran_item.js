@@ -1,7 +1,7 @@
 Template.tranItem.rendered = function () {
     Meteor.JqueryFunction.initScrollTo();
-    var yotubeUrl = Meteor.Youtube.getYoutubeUrl(this.data.post.videoId);
-    var video = Popcorn.youtube('#youtube-video', yotubeUrl);
+    var youtubeUrl = Meteor.Youtube.getYoutubeUrl(this.data.post.videoId);
+    var video = Popcorn.youtube('#youtube-video', youtubeUrl);
     var currentTrackOrder = -1;
     var eventDiv = document.getElementById("footnotediv");
     var allTracks = this.data.sentences;
