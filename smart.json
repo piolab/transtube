@@ -3,11 +3,16 @@
     "iron-router": {},
     "spin": {},
     "x-editable-bootstrap": {},
-    "accounts-ui-bootstrap-3": {},
     "iron-router-progress": {},
     "popcorn": {},
     "errors": {},
     "profile": {},
+<<<<<<< HEAD
     "accounts-entry": {}
+=======
+    "accounts-entry": {},
+    "accounts-ui-bootstrap-3-blaze": {},
+    "bootflat": {}
+>>>>>>> 3628a3286b8e5d868b663c9aaf6bb0035c6e3a91
   }
 }

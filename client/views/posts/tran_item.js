@@ -4,7 +4,10 @@ Template.tranItem.rendered = function () {
     var video = Popcorn.youtube('#youtube-video', youtubeUrl);
     var currentTrackOrder = -1;
     var eventDiv = document.getElementById("footnotediv");
-    var allTracks = this.data.sentences;
+    var captions = Captions.find({postId: Session.get("post_id")}).fetch();
+    captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
+    //var allTracks = captions.sentences;
+    console.log(allTracks);
     var chScrollPositions = [];
     var chapters = [];
 
@@ -33,18 +36,18 @@ Template.tranItem.rendered = function () {
 
     }
 
-    function addTranscript() {
+    function addTranscript(allTracks) {
         for (var i = 0; i < allTracks.length; i++) {
             var track = allTracks[i];
             video.footnote({
                 order: track.order,
                 start: track.start,
                 end: track.end,
-                text: track.originalText,
+                text: track.text[0],
                 target: "footnotediv"
             })
         }
-
+        /*
         video.on("trackstart", function(track) {
             console.log(track.order);
             currentTrackOrder = track.order;
@@ -83,15 +86,13 @@ Template.tranItem.rendered = function () {
 
                 });
             });
-
-            console.log(listWords);
-
         });
+        */
     };
-
+    console.log("Rendered");
     addTranscript();
-    addTranscriptScrollBox();
-    initChScrollPositions();
+    //addTranscriptScrollBox();
+    //initChScrollPositions();
 
 }
 

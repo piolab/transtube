@@ -8,7 +8,6 @@ iron-router
 accounts-password
 spin
 x-editable-bootstrap
-accounts-ui-bootstrap-3
 iron-router-progress
 popcorn
 errors
@@ -17,3 +16,5 @@ profile
 accounts-google
 accounts-entry
 insecure
+accounts-ui-bootstrap-3-blaze
+bootflat
