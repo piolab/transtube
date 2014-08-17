@@ -9,13 +9,9 @@
       "popcorn": {},
       "errors": {},
       "profile": {},
-<<<<<<< HEAD
-      "accounts-entry": {}
-=======
       "accounts-entry": {},
       "accounts-ui-bootstrap-3-blaze": {},
       "bootflat": {}
->>>>>>> 3628a3286b8e5d868b663c9aaf6bb0035c6e3a91
     },
     "packages": {
       "iron-router": {
@@ -58,8 +54,6 @@
         "tag": "v0.8.0",
         "commit": "cf7f7d0ecc285824bc2748e305f5d693df99b4ae"
       },
-<<<<<<< HEAD
-=======
       "accounts-ui-bootstrap-3-blaze": {
         "git": "https://github.com/rajit/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.10",
@@ -70,7 +64,6 @@
         "tag": "v0.0.2",
         "commit": "4a7ade8f5bff80e16d6aaf9d13d467e26a6ebca8"
       },
->>>>>>> 3628a3286b8e5d868b663c9aaf6bb0035c6e3a91
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
         "tag": "v0.2.0",
