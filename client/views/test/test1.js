@@ -82,3 +82,5 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+cai deo gi day
+
