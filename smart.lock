@@ -10,8 +10,7 @@
       "errors": {},
       "profile": {},
       "accounts-entry": {},
-      "accounts-ui-bootstrap-3-blaze": {},
-      "bootflat": {}
+      "accounts-ui-bootstrap-3-blaze": {}
     },
     "packages": {
       "iron-router": {
@@ -58,11 +57,6 @@
         "git": "https://github.com/rajit/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.10",
         "commit": "2cf78b49529e62060da086ca0e861fabcbc84928"
-      },
-      "bootflat": {
-        "git": "https://github.com/elie222/meteor-bootflat.git",
-        "tag": "v0.0.2",
-        "commit": "4a7ade8f5bff80e16d6aaf9d13d467e26a6ebca8"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

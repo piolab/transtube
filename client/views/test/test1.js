@@ -1,5 +1,3 @@
-// need to be refactor
-// test a gain
 if (Meteor.isClient) {
   Template.tranItem.events({
     'mouseleave .target_word': function(event){
@@ -25,10 +23,14 @@ if (Meteor.isClient) {
         url: duolingoHintsUrl,
         // cache: true,
         success: function(trans) {
-          console.log(keyword);
-          console.log(trans);
           // console.log(trans['tokens'][0]['hint_table']['rows']);
-          var hintResult = trans['tokens'][0]['hint_table']['rows'];
+          var hintResult;
+          if (trans['tokens'][0]['hint_table']){
+            hintResult = trans['tokens'][0]['hint_table']['rows'];  
+          }
+          else if (trans['tokens'][1]['hint_table']){
+            hintResult = trans['tokens'][1]['hint_table']['rows'];  
+          }
           for (var i = 0; i<hintResult.length; i++){
             if (i>=4) break;
             console.log(hintResult[i]['cells'][0]);

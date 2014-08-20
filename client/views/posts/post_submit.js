@@ -34,16 +34,18 @@ Template.postSubmit.events({
         }
         // Get caption list
         Meteor.Youtube.getYoutubeCaptionsList(videoId, null, function(captionList){
+            console.log(captionList);
             // Check if not caption list exist
             if (captionList.length === 0){
                 Errors.throw("There are no captions in this video");
             }
-            
+
+
             // If exist captions
             else{
                 Meteor.Youtube.getYoutubeData(videoId, function(youtubeData){
                     console.log(youtubeData);
-                    youtubeData.captions = captionList;
+                    //youtubeData.captions = captionList;
                     // Post youtube Data
                     Meteor.call('post', youtubeData, function(error, postId){
                         
