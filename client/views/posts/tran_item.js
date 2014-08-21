@@ -118,7 +118,7 @@ Template.tranItem.rendered = function () {
 
 Template.tranItem.helpers ({
     sentences: function() {
-        return this.captions[1].sentences;
+        return this.captions[0].sentences;
         // return captions[0].sentences;
     },
 })
