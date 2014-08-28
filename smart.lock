@@ -8,8 +8,6 @@
       "iron-router-progress": {},
       "popcorn": {},
       "errors": {},
-      "profile": {},
-      "accounts-entry": {},
       "accounts-ui-bootstrap-3-blaze": {}
     },
     "packages": {
@@ -43,16 +41,6 @@
         "tag": "v0.2.1",
         "commit": "f2af03510a9e3d9952601f5f091aa76bfbcbf224"
       },
-      "profile": {
-        "git": "https://github.com/Differential/meteor-profile.git",
-        "tag": "v0.0.10",
-        "commit": "2540cdc76cf5c5fdf6ee0fd0cff1e37c4b1ba519"
-      },
-      "accounts-entry": {
-        "git": "https://github.com/Differential/accounts-entry.git",
-        "tag": "v0.8.0",
-        "commit": "cf7f7d0ecc285824bc2748e305f5d693df99b4ae"
-      },
       "accounts-ui-bootstrap-3-blaze": {
         "git": "https://github.com/rajit/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.10",
@@ -68,16 +56,6 @@
         "tag": "v3.2.0-1",
         "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
       },
-      "accounts-t9n": {
-        "git": "https://github.com/softwarerero/meteor-accounts-t9n.git",
-        "tag": "v0.0.5",
-        "commit": "ad9539a8818049d5d9fa050d8b2a1f62706483b1"
-      },
-      "simple-form": {
-        "git": "https://github.com/Differential/simple-form.git",
-        "tag": "v0.1.8",
-        "commit": "1ea0d3621b333e6f24f37e0e93efd3c081068716"
-      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.5",
@@ -92,11 +70,6 @@
         "git": "https://github.com/EventedMind/iron-dynamic-template.git",
         "tag": "v0.2.1",
         "commit": "4dd1185c4d9d616c9abdb3f33e4a7d5a88db7e18"
-      },
-      "underscore-string-latest": {
-        "git": "https://github.com/TimHeckel/meteor-underscore-string.git",
-        "tag": "v2.3.3",
-        "commit": "4a5d70eee48fbd90a6e6fc78747250d704a0b3bb"
       }
     }
   }

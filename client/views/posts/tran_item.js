@@ -5,9 +5,9 @@ Template.tranItem.rendered = function () {
     var video = Popcorn.youtube('#youtube-video', youtubeUrl);
     var currentTrackOrder = -1;
     var eventDiv = document.getElementById("footnotediv");
-    var captions = Captions.find({postId: Session.get("post_id")}).fetch();
-    console.log(captions[0].sentences);
-    var allTracks = captions[0].sentences;
+    // var captions = Captions.find({postId: Session.get("post_id")}).fetch();
+    // console.log(captions[0].sentences);
+    var allTracks = this.data.captions[0].sentences;
     console.log(allTracks.length);
     var chScrollPositions = [];
     var chapters = [];

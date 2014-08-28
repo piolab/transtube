@@ -12,8 +12,5 @@ iron-router-progress
 popcorn
 errors
 http
-profile
 accounts-google
-accounts-entry
 accounts-ui-bootstrap-3-blaze
-insecure

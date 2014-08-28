@@ -4,28 +4,13 @@ addCaptionToPost = function(videoId, postId, captionInfo, isStandard, isTrust, c
     captionInfo.postId = postId;
     captionInfo.videoId = videoId;
     Meteor.call('addCaption', captionInfo, function(error, captionId){
-        Meteor.Youtube.getYoutubeCaptions(videoId, null, captionInfo, function(sentences){
-            for (var i = 0; i<sentences.length; i++){
-                addSentenceToCaption(captionId, sentences[i], i);
-            }
-            callback();
-        })
+        
     });
-}
-
-addSentenceToCaption = function(captionId, sentenceInfo, order){
-    sentenceInfo.order = order;
-    sentenceInfo.captionId = captionId;
-    Sentences.insert(sentenceInfo);
 }
 
 Template.postSubmit.events({
     'submit form': function(e) {
         e.preventDefault();
-        Meteor.Youtube.getYoutubeData("aD41o3L8tHY",function(){
-
-        });
-        
         var url = $(e.target).find('[name=url]').val();
         var videoId = Meteor.Youtube.getIdFromLink(url);
         if (!videoId){
