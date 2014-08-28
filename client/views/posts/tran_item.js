@@ -1,4 +1,5 @@
 Template.tranItem.rendered = function () {
+    console.log("rendered "+this.data); 
     Meteor.JqueryFunction.initScrollTo();
     var youtubeUrl = Meteor.Youtube.getYoutubeUrl(this.data.post.videoId);
     var video = Popcorn.youtube('#pio-youtube-video', youtubeUrl);
@@ -6,14 +7,14 @@ Template.tranItem.rendered = function () {
 
     var currentTrackOrder = -1;
     var eventDiv = document.getElementById("footnotediv");
-    var captions = Captions.find({postId: Session.get("post_id")}).fetch();
-    captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
-    //var allTracks = captions.sentences;
-    console.log(allTracks);
+    // var captions = Captions.find({postId: Session.get("post_id")}).fetch();
+    // console.log(captions[0].sentences);
+    var allTracks = this.data.captions[0].sentences;
+    console.log(allTracks.length);
     var chScrollPositions = [];
     var chapters = [];
 
-    function initTranlatable() {
+    function initTranslatable() {
         $('.left-tran').each(function(){
           var text = $(this).html().split(' ');
           len = text.length,
@@ -23,10 +24,10 @@ Template.tranItem.rendered = function () {
             result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
         }
         $(this).html(result.join(' '));
-        });
+    });
     }
     function addTranscriptScrollBox() {
-        initTranlatable();
+        initTranslatable();
     }
 
     function initChScrollPositions() {
@@ -41,11 +42,30 @@ Template.tranItem.rendered = function () {
     function addTranscript(allTracks) {
         for (var i = 0; i < allTracks.length; i++) {
             var track = allTracks[i];
+            console.log(track.text);
+            var text = track.text[0].split(/\s+/);
+            // console.log("text "); console.log(text.length);
+            var result = "";
+            for (var j=0; j<text.length; j++){
+                result += '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[j] + " " + '</span>';
+            }
+
+            // for( var i = 0; i < text.length; i++ ) {
+                //result += '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+            // }
+          //   var text = track.split(' ');
+          // len = text.length,
+          // result = [];
+
+          // for( var i = 0; i < len; i++ ) {
+          //   result[i] = '<span class="target_word" data-toggle="popover" data-trigger="hover" data-placement="bottom">' + text[i] + '</span>';
+          //   }
+          //   var trackText = result.join(" ");
+            // console.log(trackText);
             video.footnote({
-                order: track.order,
                 start: track.start,
                 end: track.end,
-                text: track.text[0],
+                text: result,
                 target: "footnotediv"
             })
         }
@@ -89,25 +109,17 @@ Template.tranItem.rendered = function () {
                 });
             });
         });
-        */
-    };
-    console.log("Rendered");
-    addTranscript();
+*/
+};
+    // console.log("Rendered");
+    addTranscript(allTracks);
     //addTranscriptScrollBox();
     //initChScrollPositions();
 }
 
 Template.tranItem.helpers ({
     sentences: function() {
-        var captions = Captions.find({postId: Session.get("post_id")}).fetch();
-        captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
-        console.log(captions.sentences);
-        return captions.sentences;
+        return this.captions[0].sentences;
+        // return captions[0].sentences;
     },
-    captions: function(){
-        var captions = Captions.find({postId: Session.get("post_id")}).fetch();
-        captions.sentences = Sentences.find({captionId: captions[0]._id}).fetch();
-        console.log(captions.sentences);
-        return captions.sentences;
-    }
 })
