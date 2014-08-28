@@ -4,8 +4,9 @@ addCaptionToPost = function(videoId, postId, captionInfo, isStandard, isTrust, c
     captionInfo.postId = postId;
     captionInfo.videoId = videoId;
     Meteor.call('addCaption', captionInfo, function(error, captionId){
-        
+        callback();    
     });
+
 }
 
 Template.postSubmit.events({
