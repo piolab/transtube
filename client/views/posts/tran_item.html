@@ -1,7 +1,36 @@
 <template name='tranItem'>
 	<div class="main-translate">
-		<div class="youtube-player">
-			<div style="width: 800px; height: 350px;" id='youtube-video'></div>
+		<div class="youtube-player col-md-10">
+			<div  id='pio-youtube-video' playing="0" style="width: 100%; height: 350px;"></div>
+            <div id="pio-subtitle">
+                Cau nay o dong tren<br>
+                Cau nay o dong duoi
+            </div>
+            <div id="pio-timeline">
+                <div id="pio-timeline-current"></div>
+            </div>
+            <div class="player-control-bar">
+                <div class="player-play-control">
+                    <div class="fa fa-play" id="pio-play-button" style="font-size: 24px; color: #f9ffe8;margin-top: 14px;"></div>
+                </div>
+                <div class="player-current-time">
+                    <div class="player-current-time-display" id="pio-player-current-time">00:00</div>
+                    <div class="player-control-divider-display">/</div>
+                    <div class="player-control-total-time-display" id="pio-player-total-time">00:00</div>
+                </div>
+                <div class="player-expand-control">
+                    <div class="fa fa-arrows-alt" style="font-size: 24px; color: #f9ffe8; margin-top:14px"></div>
+                </div>
+                <div class="player-volume-control" id="pio-volume-control">
+                    <div class="progress" style="width: 100%; height:6px; margin-top:22px; height:6px;">
+                        <div class="progress-bar" id="pio-volume-control-progressbar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="player-mute-control">
+                    <div class="fa fa-volume-up" id="pio-mute-button" muting="0" style="font-size: 24px; color: #f9ffe8; margin-top:14px"></div>
+                </div>
+            </div>
 			<!-- <div id="words">
 				<ul class="nav nav-pills" role="tablist">
 					<li class="active"><a href="#">New Words</a></li>

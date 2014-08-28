@@ -1,7 +1,9 @@
 Template.tranItem.rendered = function () {
     Meteor.JqueryFunction.initScrollTo();
     var youtubeUrl = Meteor.Youtube.getYoutubeUrl(this.data.post.videoId);
-    var video = Popcorn.youtube('#youtube-video', youtubeUrl);
+    var video = Popcorn.youtube('#pio-youtube-video', youtubeUrl);
+    Meteor.PioVideoControl.initVideoControl(video);
+
     var currentTrackOrder = -1;
     var eventDiv = document.getElementById("footnotediv");
     var captions = Captions.find({postId: Session.get("post_id")}).fetch();
@@ -93,7 +95,6 @@ Template.tranItem.rendered = function () {
     addTranscript();
     //addTranscriptScrollBox();
     //initChScrollPositions();
-
 }
 
 Template.tranItem.helpers ({

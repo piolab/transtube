@@ -9,6 +9,7 @@
     "profile": {},
     "accounts-entry": {},
     "accounts-ui-bootstrap-3-blaze": {},
-    "bootflat": {}
+    "bootflat": {},
+    "font-awesome": {}
   }
 }
